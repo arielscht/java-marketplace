@@ -50,15 +50,14 @@ public class Product {
     @Override
     public String toString() {
         String result = "id: " + this.id +
-                        "\nname: " + this.name +
-                        "\ndescription: " + this.description +
-                        "\nprice: " + this.price +
-                        "\naccepted payments: " + this.paymentMethods.toString() +
-                        "\ncategory: " + this.category.toString() +
-                        "\nuser: " + this.user.toString() +
-                        "\nstate: " + this.state.getType() +
-                        "\nlocation: " + this.location.toString() +
-                        "\ngeneralRating: " + this.generalRating;
+                "\nname: " + this.name +
+                "\ndescription: " + this.description +
+                "\nprice: " + this.price +
+                "\ncategory: " + this.category.toString(1) +
+                "\nuser: " + this.user.toString(1) +
+                "\nstate: " + this.state.getType() +
+                "\nlocation: " + this.location.toString(1) +
+                "\ngeneralRating: " + this.generalRating;
 
         return result;
     }

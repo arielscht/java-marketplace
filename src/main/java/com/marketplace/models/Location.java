@@ -17,7 +17,7 @@ public class Location {
         this.state = state;
     };
 
-    public static Location jsonToObject(JsonObject jsonObject){
+    public static Location jsonToObject(JsonObject jsonObject) {
         String street = jsonObject.getString("street");
         String neighborhood = jsonObject.getString("neighborhood");
         int number = jsonObject.getInt("number");
@@ -27,5 +27,20 @@ public class Location {
         Location location = new Location(street, neighborhood, number, city, state);
 
         return location;
+    }
+
+    public String toString(int level) {
+        String tabbing = "\n";
+
+        for (int i = 0; i < level; ++i)
+            tabbing += "\t";
+
+        String result = tabbing + "Rua: " + this.street +
+                tabbing + "Bairro: " + this.neighborhood +
+                tabbing + "Número: " + this.number +
+                tabbing + "Cidade: " + this.city +
+                tabbing + "Estado: " + this.state;
+
+        return result;
     }
 }

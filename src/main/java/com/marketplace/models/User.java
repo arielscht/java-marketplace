@@ -17,7 +17,21 @@ public class User {
         this.admin = admin;
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
+    }
+
+    public String toString(int level) {
+        String tabbing = "\n";
+
+        for (int i = 0; i < level; ++i)
+            tabbing += "\t";
+
+        String result = tabbing + "id: " + this.id +
+                tabbing + "name: " + this.firstName + " " + this.lastName +
+                tabbing + "email: " + this.email +
+                tabbing + "admin: " + this.admin;
+
+        return result;
     }
 }
