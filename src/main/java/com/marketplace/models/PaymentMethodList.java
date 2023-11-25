@@ -22,15 +22,4 @@ public class PaymentMethodList extends ArrayList<PaymentMethod> {
 
         return paymentMethods;
     }
-
-    @Override
-    public String toString(){
-        Iterator<PaymentMethod> iterator = this.iterator();
-        ArrayList<String> types = new ArrayList<String>();
-
-        while (iterator.hasNext())
-            types.add(iterator.next().getType().getType());
-
-        return String.join(", ", types);
-    }
 }

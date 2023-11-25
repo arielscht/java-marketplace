@@ -55,7 +55,7 @@ public class Product {
                 "\nprice: " + this.price +
                 "\ncategory: " + this.category.toString(1) +
                 "\nuser: " + this.user.toString(1) +
-                "\nstate: " + this.state.getType() +
+                "\nstate: " + this.state +
                 "\nlocation: " + this.location.toString(1) +
                 "\ngeneralRating: " + this.generalRating;
 
