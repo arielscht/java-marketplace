@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import com.marketplace.controllers.ProductController;
 import com.marketplace.models.Product;
-
 import com.marketplace.models.CategoriesList;
 import com.marketplace.models.Category;
 
