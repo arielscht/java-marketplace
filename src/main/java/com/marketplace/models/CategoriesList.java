@@ -1,10 +1,13 @@
 package com.marketplace.models;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.json.JsonObject;
 
-public class CategoriesList extends Loadable {
+import com.marketplace.models.interfaces.Searchable;
+
+public class CategoriesList extends Loadable implements Searchable<Category> {
     private static CategoriesList instance;
     private ArrayList<Category> categories;
 
@@ -28,7 +31,21 @@ public class CategoriesList extends Loadable {
         return instance;
     }
 
-    public ArrayList<Category> getCategories() {
-        return this.categories;
+    @Override
+    public Category findById(int id){
+        boolean found = false;
+        Iterator<Category> iterator = categories.iterator();
+        Category category = null;
+
+        while (!found && iterator.hasNext()) {
+            Category currentCategory = iterator.next();
+
+            if (currentCategory.getId() == id){
+                category = currentCategory;
+                found = true;
+            }
+        }
+
+        return category;
     }
 }

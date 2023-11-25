@@ -1,17 +1,14 @@
 package com.marketplace;
 
-import java.util.ArrayList;
-
-import com.marketplace.models.CategoriesList;
-import com.marketplace.models.Category;
+import com.marketplace.models.Product;
+import com.marketplace.models.ProductList;
 
 public class Main {
     public static void main(String[] args) {
-        CategoriesList categoriesList = CategoriesList.getInstance();
-        ArrayList<Category> categories = categoriesList.getCategories();
+        ProductList productList = ProductList.getInstance();
 
-        for (Category category : categories) {
-            System.out.println("Category Name: " + category.getName());
-        }
+        Product product = productList.findById(2);
+
+        System.out.println(product);
     }
 }
