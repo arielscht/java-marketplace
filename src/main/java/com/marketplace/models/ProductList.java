@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
+import com.marketplace.enums.StateType;
 import com.marketplace.interfaces.Searchable;
 
 public class ProductList extends Loadable implements Searchable<Product>{
@@ -18,6 +19,13 @@ public class ProductList extends Loadable implements Searchable<Product>{
         this.loadData("src/main/java/com/marketplace/data/products.json");
     };
 
+    public static synchronized ProductList getInstance() {
+        if (instance == null)
+            instance = new ProductList();
+
+        return instance;
+    }
+
     public ArrayList<Product> getProducts() { return this.products; }
 
     protected void handleJson(JsonObject jsonProduct) {
@@ -27,14 +35,18 @@ public class ProductList extends Loadable implements Searchable<Product>{
         float price = jsonProduct.getJsonNumber("price").numberValue().floatValue();
         JsonArray jsonImage = jsonProduct.getJsonArray("images");
         JsonArray jsonRating = jsonProduct.getJsonArray("ratings");
+        JsonArray JsonPaymentMethods = jsonProduct.getJsonArray("paymentMethods");
         int categoryId = jsonProduct.getInt("categoryId");
         int userId = jsonProduct.getInt("userId");
-        String state = jsonProduct.getString("state");
+        String stateType = jsonProduct.getString("state");
         JsonObject jsonLocation = jsonProduct.getJsonObject("location");
         float generalRating = jsonProduct.getJsonNumber("generalRating").numberValue().floatValue();
 
+        StateType state = StateType.valueOf(stateType);
+
         ImageList images = ImageList.jsonToList(jsonImage);
         RatingList ratings = RatingList.jsonToList(jsonRating);
+        PaymentMethodList paymentMethods = PaymentMethodList.jsonToList(JsonPaymentMethods);
 
         CategoriesList categories = CategoriesList.getInstance();
         Category category = categories.findById(categoryId);
@@ -44,15 +56,8 @@ public class ProductList extends Loadable implements Searchable<Product>{
 
         Location location = Location.jsonToObject(jsonLocation);
 
-        Product product = new Product(id, name, description, price, images, ratings, category, user, state, location, generalRating);
+        Product product = new Product(id, name, description, price, images, ratings, paymentMethods, category, user, state, location, generalRating);
         products.add(product);
-    }
-
-    public static synchronized ProductList getInstance() {
-        if (instance == null)
-            instance = new ProductList();
-
-        return instance;
     }
 
     public Product findById(int id) {
@@ -72,7 +77,7 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return product;
     }
 
-    public ArrayList<Product> filter(HashMap<String, Object> filter){
+    public ArrayList<Product> filter(HashMap<String, Object> filter) {
         ArrayList<Product> filteredList = new ArrayList<Product>();
 
         String name = (String) filter.get("name");

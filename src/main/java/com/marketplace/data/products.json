@@ -14,16 +14,30 @@
         ],
         "ratings": [
             {
+                "userId": 2,
                 "rating": 5,
                 "comment": "Os salgadinhos são diferenciados mesmo!"
             },
             {
+                "userId": 3,
                 "rating": 4,
                 "comment": "Podia estar mais salgado!"
             },
             {
+                "userId": 4,
                 "rating": 0,
                 "comment": "Péssimo!"
+            }
+        ],
+        "paymentMethods": [
+            {
+                "type": "CASH"
+            },
+            {
+                "type": "CREDIT_CARD"
+            },
+            {
+                "type": "DEBIT_CARD"
             }
         ],
         "categoryId": 1,
@@ -53,21 +67,38 @@
         ],
         "ratings": [
             {
+                "userId": 5,
                 "rating": 5,
                 "comment": "Os Doces são diferenciados mesmo!"
             },
             {
+                "userId": 4,
                 "rating": 4,
                 "comment": "Podia estar mais salgado!"
             },
             {
+                "userId": 1,
                 "rating": 0,
                 "comment": "Péssimo!"
             }
         ],
+        "paymentMethods": [
+            {
+                "type": "CASH"
+            },
+            {
+                "type": "CREDIT_CARD"
+            },
+            {
+                "type": "DEBIT_CARD"
+            },
+            {
+                "type": "PIX"
+            }
+        ],
         "categoryId": 1,
         "userId": 2,
-        "state": "NEW",
+        "state": "USED",
         "location": {
             "street": "Clávio molinari",
             "neighborhood": "Capão da imbuia",
@@ -92,16 +123,30 @@
         ],
         "ratings": [
             {
+                "userId": 5,
                 "rating": 5,
-                "comment": "Os Tortas são diferenciados mesmo!"
+                "comment": "Os Doces são diferenciados mesmo!"
             },
             {
+                "userId": 4,
                 "rating": 4,
                 "comment": "Podia estar mais salgado!"
             },
             {
+                "userId": 7,
                 "rating": 0,
                 "comment": "Péssimo!"
+            }
+        ],
+        "paymentMethods": [
+            {
+                "type": "CASH"
+            },
+            {
+                "type": "CREDIT_CARD"
+            },
+            {
+                "type": "DEBIT_CARD"
             }
         ],
         "categoryId": 1,

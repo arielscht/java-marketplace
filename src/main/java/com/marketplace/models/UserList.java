@@ -11,19 +11,20 @@ public class UserList extends Loadable implements Searchable<User> {
     private static UserList instance;
     private ArrayList<User> users;
 
-    private UserList(){
+    private UserList() {
         this.users = new ArrayList<User>();
         this.loadData("src/main/java/com/marketplace/data/users.json");
     }
 
-    protected void handleJson(JsonObject jsonUser){
+    protected void handleJson(JsonObject jsonUser) {
         int id = jsonUser.getInt("id");
         String firstName = jsonUser.getString("firstName");
         String lastName = jsonUser.getString("lastName");
         String email = jsonUser.getString("email");
+        String photo = jsonUser.getString("photo");
         boolean admin = jsonUser.getBoolean("admin");
 
-        User user = new User(id, firstName, lastName, email, admin);
+        User user = new User(id, firstName, lastName, email, photo, admin);
 
         this.users.add(user);
     }

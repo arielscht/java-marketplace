@@ -23,4 +23,9 @@ public class ProductController {
 
         return list.filter(filters);
     }
+
+    public Product getProduct(int id){
+        ProductList productList = ProductList.getInstance();
+        return productList.findById(id);
+    }
 }
