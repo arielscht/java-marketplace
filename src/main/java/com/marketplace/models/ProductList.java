@@ -1,12 +1,13 @@
 package com.marketplace.models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 
-import com.marketplace.models.interfaces.Searchable;
+import com.marketplace.interfaces.Searchable;
 
 public class ProductList extends Loadable implements Searchable<Product>{
     private static ProductList instance;
@@ -16,6 +17,8 @@ public class ProductList extends Loadable implements Searchable<Product>{
         this.products = new ArrayList<Product>();
         this.loadData("src/main/java/com/marketplace/data/products.json");
     };
+
+    public ArrayList<Product> getProducts() { return this.products; }
 
     protected void handleJson(JsonObject jsonProduct) {
         int id = jsonProduct.getInt("id");
@@ -31,7 +34,6 @@ public class ProductList extends Loadable implements Searchable<Product>{
         float generalRating = jsonProduct.getJsonNumber("generalRating").numberValue().floatValue();
 
         ImageList images = ImageList.jsonToList(jsonImage);
-
         RatingList ratings = RatingList.jsonToList(jsonRating);
 
         CategoriesList categories = CategoriesList.getInstance();
@@ -43,7 +45,6 @@ public class ProductList extends Loadable implements Searchable<Product>{
         Location location = Location.jsonToObject(jsonLocation);
 
         Product product = new Product(id, name, description, price, images, ratings, category, user, state, location, generalRating);
-
         products.add(product);
     }
 
@@ -54,10 +55,9 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return instance;
     }
 
-    @Override
     public Product findById(int id) {
         boolean found = false;
-        Iterator<Product> iterator = products.iterator();
+        Iterator<Product> iterator = this.products.iterator();
         Product product = null;
 
         while (!found && iterator.hasNext()) {
@@ -72,4 +72,31 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return product;
     }
 
+    public ArrayList<Product> filter(HashMap<String, Object> filter){
+        ArrayList<Product> filteredList = new ArrayList<Product>();
+
+        String name = (String) filter.get("name");
+        Integer categoryId = (Integer) filter.get("categoryId");
+        Float lowerPriceBound = (Float) filter.get("lowerPriceBound");
+        Float upperPriceBound = (Float) filter.get("upperPriceBound");
+
+        Iterator<Product> iterator = this.products.iterator();
+
+        while (iterator.hasNext()) {
+            Product currentProduct = iterator.next();
+
+            if (name != null && !currentProduct.getName().toLowerCase().contains(name.toLowerCase()))
+                continue;
+            if (categoryId != null && categoryId != currentProduct.getCategory().getId())
+                continue;
+            if (lowerPriceBound != null && (currentProduct.getPrice() < lowerPriceBound))
+                continue;
+            if (upperPriceBound != null && (currentProduct.getPrice() > upperPriceBound))
+                continue;
+
+            filteredList.add(currentProduct);
+        }
+
+        return filteredList;
+    }
 }

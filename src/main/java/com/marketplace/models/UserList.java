@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import javax.json.JsonObject;
 
-import com.marketplace.models.interfaces.Searchable;
+import com.marketplace.interfaces.Searchable;
 
 public class UserList extends Loadable implements Searchable<User> {
     private static UserList instance;
@@ -35,7 +35,6 @@ public class UserList extends Loadable implements Searchable<User> {
         return instance;
     }
 
-    @Override
     public User findById(int id) {
         boolean found = false;
         Iterator<User> iterator = users.iterator();

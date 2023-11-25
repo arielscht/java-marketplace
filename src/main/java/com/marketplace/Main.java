@@ -1,14 +1,18 @@
 package com.marketplace;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import com.marketplace.models.Product;
-import com.marketplace.models.ProductList;
+import com.marketplace.controllers.ProductController;
 
 public class Main {
     public static void main(String[] args) {
-        ProductList productList = ProductList.getInstance();
+        ProductController productController = new ProductController();
 
-        Product product = productList.findById(2);
+        ArrayList<Product> filteredProducts = productController.filter("", -1, -1, 20f);
 
-        System.out.println(product);
+        Iterator<Product> iterator = filteredProducts.iterator();
+        while (iterator.hasNext()) System.out.println(iterator.next());
     }
 }

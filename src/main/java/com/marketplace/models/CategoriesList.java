@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 import javax.json.JsonObject;
 
-import com.marketplace.models.interfaces.Searchable;
+import com.marketplace.interfaces.Searchable;
 
 public class CategoriesList extends Loadable implements Searchable<Category> {
     private static CategoriesList instance;
@@ -31,7 +31,6 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         return instance;
     }
 
-    @Override
     public Category findById(int id){
         boolean found = false;
         Iterator<Category> iterator = categories.iterator();

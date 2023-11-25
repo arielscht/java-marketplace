@@ -27,8 +27,20 @@ public class Product {
         this.generalRating = generalRating;
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public float getPrice() {
+        return this.price;
+    }
+
+    public Category getCategory() {
+        return this.category;
     }
 
     @Override
