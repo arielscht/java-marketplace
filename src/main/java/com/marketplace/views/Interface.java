@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public abstract class Interface {
     protected int numberOfOptions;
+    protected Scanner keyboard;
 
     private int readCommand(Scanner keyboard) {
         int option = -1;
 
         System.out.print("Opção: ");
 
-        if (keyboard.hasNextInt()) {
+        if (keyboard.hasNextInt())
             option = keyboard.nextInt();
-        }
 
         return option;
     }
@@ -20,9 +20,8 @@ public abstract class Interface {
     private boolean checkOption(int option) {
         boolean isValid = option >= 1 && option <= this.numberOfOptions;
 
-        if (!isValid) {
+        if (!isValid)
             System.out.println("OPÇÃO INVÁLIDA: Selecione novamente.\n");
-        }
 
         return isValid;
     }
@@ -34,9 +33,9 @@ public abstract class Interface {
     public void listenCommand() {
         int option;
         boolean isValid;
-        Scanner keyboard = new Scanner(System.in);
+        this.keyboard = new Scanner(System.in);
 
-        option = this.readCommand(keyboard);
+        option = this.readCommand(this.keyboard);
 
         while (!this.isExit(option)) {
             isValid = this.checkOption(option);
@@ -44,12 +43,11 @@ public abstract class Interface {
             if (isValid)
                 this.handleOption(option);
 
-            option = this.readCommand(keyboard);
+            option = this.readCommand(this.keyboard);
         }
     }
 
     public abstract void showOptions();
 
     public abstract void handleOption(int option);
-
 }

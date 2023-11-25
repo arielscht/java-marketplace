@@ -25,6 +25,11 @@ public class Category {
         return this.name;
     }
 
+    @Override
+    public String toString() {
+        return this.toString(0);
+    }
+
     public String toString(int level) {
         String tabbing = "\n";
 

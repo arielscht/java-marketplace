@@ -29,6 +29,11 @@ public class Location {
         return location;
     }
 
+    @Override
+    public String toString() {
+        return this.toString(0);
+    }
+
     public String toString(int level) {
         String tabbing = "\n";
 

@@ -16,6 +16,17 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         this.loadData("src/main/java/com/marketplace/data/categories.json");
     }
 
+    public static synchronized CategoriesList getInstance() {
+        if (instance == null)
+            instance = new CategoriesList();
+
+        return instance;
+    }
+
+    public ArrayList<Category> getCategories() {
+        return this.categories;
+    }
+
     protected void handleJson(JsonObject jsonCategory) {
         int id = jsonCategory.getInt("id");
         String categoryName = jsonCategory.getString("name");
@@ -24,14 +35,7 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         categories.add(category);
     }
 
-    public static synchronized CategoriesList getInstance() {
-        if (instance == null)
-            instance = new CategoriesList();
-
-        return instance;
-    }
-
-    public Category findById(int id){
+    public Category findById(int id) {
         boolean found = false;
         Iterator<Category> iterator = categories.iterator();
         Category category = null;
@@ -39,7 +43,7 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         while (!found && iterator.hasNext()) {
             Category currentCategory = iterator.next();
 
-            if (currentCategory.getId() == id){
+            if (currentCategory.getId() == id) {
                 category = currentCategory;
                 found = true;
             }

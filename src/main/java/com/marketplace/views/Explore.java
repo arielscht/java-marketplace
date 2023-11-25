@@ -7,9 +7,11 @@ import com.marketplace.controllers.ProductController;
 import com.marketplace.models.Product;
 
 public class Explore extends Interface {
+    private ProductController productController;
 
     public Explore() {
         this.numberOfOptions = 4;
+        this.productController = new ProductController();
     }
 
     public void showOptions() {
@@ -37,21 +39,25 @@ public class Explore extends Interface {
     }
 
     private void listProducts() {
-        ProductController controller = new ProductController();
-
-        ArrayList<Product> products = controller.search();
-        Iterator<Product> iterator = products.iterator();
+        ArrayList<Product> products = this.productController.search();
 
         System.out.println("\nPRODUTOS:\n");
-
+        Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
             System.out.print("\n");
         }
+
+        this.showOptions();
     }
 
     private void filterProducts() {
+        ProductFilter productFilterScreen = new ProductFilter();
 
+        productFilterScreen.showOptions();
+        productFilterScreen.listenCommand();
+
+        this.showOptions();
     }
 
     private void showProduct() {
