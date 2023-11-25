@@ -13,7 +13,8 @@ public class Product {
     private Location location;
     private float generalRating;
 
-    public Product(int id, String name, String description, float price, ImageList images, RatingList ratings, Category category, User user, String state, Location location, float generalRating) {
+    public Product(int id, String name, String description, float price, ImageList images, RatingList ratings,
+            Category category, User user, String state, Location location, float generalRating) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,14 +47,14 @@ public class Product {
     @Override
     public String toString() {
         String result = "id: " + this.id +
-                        "\nname: " + this.name +
-                        "\ndescription: " + this.description +
-                        "\nprice: " + this.price +
-                        "\ncategory: " + this.category.toString() +
-                        "\nuser: " + this.user.toString() +
-                        "\nstate: " + this.state +
-                        "\nlocation: " + this.location.toString() +
-                        "\ngeneralRating: " + this.generalRating;
+                "\nname: " + this.name +
+                "\ndescription: " + this.description +
+                "\nprice: " + this.price +
+                "\ncategory: " + this.category.toString(1) +
+                "\nuser: " + this.user.toString(1) +
+                "\nstate: " + this.state +
+                "\nlocation: " + this.location.toString(1) +
+                "\ngeneralRating: " + this.generalRating;
 
         return result;
     }

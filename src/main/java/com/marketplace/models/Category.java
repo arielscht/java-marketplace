@@ -24,4 +24,17 @@ public class Category {
     public String getName() {
         return this.name;
     }
+
+    public String toString(int level) {
+        String tabbing = "\n";
+
+        for (int i = 0; i < level; ++i)
+            tabbing += "\t";
+
+        String result = tabbing + "id: " + this.id +
+                tabbing + "name: " + this.name;
+
+        return result;
+    }
+
 }

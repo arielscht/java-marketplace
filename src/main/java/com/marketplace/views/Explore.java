@@ -1,5 +1,11 @@
 package com.marketplace.views;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.marketplace.controllers.ProductController;
+import com.marketplace.models.Product;
+
 public class Explore extends Interface {
 
     public Explore() {
@@ -31,7 +37,17 @@ public class Explore extends Interface {
     }
 
     private void listProducts() {
+        ProductController controller = new ProductController();
 
+        ArrayList<Product> products = controller.search();
+        Iterator<Product> iterator = products.iterator();
+
+        System.out.println("\nPRODUTOS:\n");
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+            System.out.print("\n");
+        }
     }
 
     private void filterProducts() {
