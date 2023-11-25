@@ -2,13 +2,13 @@ package com.marketplace.models;
 
 import java.util.ArrayList;
 
-public class ProductList extends Loadable {
+public class ProductList {
     private static ProductList instance;
     private ArrayList<Product> products;
 
     private ProductList() {
         this.products = new ArrayList<Product>();
-        this.loadData("./data/products.csv");
+        // this.loadData("./data/products.csv");
     };
 
     protected void handleParts(String[] parts) {

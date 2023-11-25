@@ -2,23 +2,23 @@ package com.marketplace.models;
 
 import java.util.ArrayList;
 
+import javax.json.JsonObject;
+
 public class CategoriesList extends Loadable {
     private static CategoriesList instance;
     private ArrayList<Category> categories;
 
     private CategoriesList() {
         this.categories = new ArrayList<Category>();
-        this.loadData("src/main/java/com/marketplace/data/categories.csv");
+        this.loadData("src/main/java/com/marketplace/data/categories.json");
     }
 
-    protected void handleParts(String[] parts) {
-        if (parts.length == 2) {
-            int id = Integer.parseInt(parts[0].trim());
-            String name = parts[1].trim();
+    protected void handleJson(JsonObject jsonCategory) {
+        int id = jsonCategory.getInt("id");
+        String categoryName = jsonCategory.getString("name");
+        Category category = new Category(id, categoryName);
 
-            Category category = new Category(id, name);
-            categories.add(category);
-        }
+        categories.add(category);
     }
 
     public static synchronized CategoriesList getInstance() {
