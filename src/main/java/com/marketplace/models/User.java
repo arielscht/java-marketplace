@@ -1,6 +1,8 @@
 package com.marketplace.models;
 
 public class User {
+    private static int nextId = 1;
+
     private int id;
     private String firstName;
     private String lastName;
@@ -8,8 +10,8 @@ public class User {
     private String photo;
     private boolean admin;
 
-    public User(int id, String firstName, String lastName, String email, String photo, boolean admin) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String photo, boolean admin) {
+        this.id = User.nextId++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

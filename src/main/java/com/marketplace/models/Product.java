@@ -5,6 +5,8 @@ import java.util.Iterator;
 import com.marketplace.enums.StateType;
 
 public class Product {
+    private static int nextId = 1;
+
     private int id;
     private String name;
     private String description;
@@ -17,11 +19,12 @@ public class Product {
     private Category category;
     private Location location;
     private User user;
+    private boolean donation;
 
-    public Product(int id, String name, String description, float price, ImageList images, RatingList ratings,
+    public Product(String name, String description, float price, ImageList images, RatingList ratings,
             PaymentMethodList paymentMethods, Category category, User user, StateType state, Location location,
-            float generalRating) {
-        this.id = id;
+            float generalRating, boolean donation) {
+        this.id = Product.nextId++;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -33,6 +36,7 @@ public class Product {
         this.state = state;
         this.location = location;
         this.generalRating = generalRating;
+        this.donation = donation;
     }
 
     public int getId() {
@@ -87,7 +91,6 @@ public class Product {
         while (ratingsIterator.hasNext()) {
             System.out.println(ratingsIterator.next().toString(1));
         }
-
     }
 
     public static String parseState(StateType state) {

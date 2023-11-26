@@ -1,11 +1,13 @@
 package com.marketplace.models;
 
 public class Category {
+    private static int nextId = 1;
+
     private int id;
     private String name;
 
-    public Category(int id, String name) {
-        setId(id);
+    public Category(String name) {
+        setId(Category.nextId++);
         setName(name);
     }
 

@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "name": "Salgadinhos Deliciosos",
     "description": "Salgadinhos deliciosos feitos pela minha mamaezinha",
     "price": 19.99,
@@ -50,10 +49,10 @@
       "city": "Curitiba",
       "state": "PR"
     },
-    "generalRating": 3
+    "generalRating": 3,
+    "donation": false
   },
   {
-    "id": 2,
     "name": "Doces Deliciosos",
     "description": "Doces deliciosos feitos pela minha mamaezinha",
     "price": 29.99,
@@ -106,10 +105,10 @@
       "city": "Curitiba",
       "state": "PR"
     },
-    "generalRating": 3
+    "generalRating": 3,
+    "donation": false
   },
   {
-    "id": 3,
     "name": "Tortas Deliciosos",
     "description": "Tortas deliciosos feitos pela minha mamaezinha",
     "price": 39.99,
@@ -159,6 +158,7 @@
       "city": "Curitiba",
       "state": "PR"
     },
-    "generalRating": 3
+    "generalRating": 3,
+    "donation": false
   }
 ]

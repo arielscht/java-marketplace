@@ -27,14 +27,6 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         return this.categories;
     }
 
-    protected void handleJson(JsonObject jsonCategory) {
-        int id = jsonCategory.getInt("id");
-        String categoryName = jsonCategory.getString("name");
-        Category category = new Category(id, categoryName);
-
-        categories.add(category);
-    }
-
     public Category findById(int id) {
         boolean found = false;
         Iterator<Category> iterator = categories.iterator();
@@ -50,5 +42,12 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
         }
 
         return category;
+    }
+
+    protected void handleJson(JsonObject jsonCategory) {
+        String categoryName = jsonCategory.getString("name");
+        Category category = new Category(categoryName);
+
+        categories.add(category);
     }
 }

@@ -6,7 +6,6 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 
 public class ImageList extends ArrayList<Image> {
-
     public static ImageList jsonToList(JsonArray jsonArray){
         ImageList imageList = new ImageList();
 

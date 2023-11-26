@@ -28,38 +28,6 @@ public class ProductList extends Loadable implements Searchable<Product>{
 
     public ArrayList<Product> getProducts() { return this.products; }
 
-    protected void handleJson(JsonObject jsonProduct) {
-        int id = jsonProduct.getInt("id");
-        String name = jsonProduct.getString("name");
-        String description = jsonProduct.getString("description");
-        float price = jsonProduct.getJsonNumber("price").numberValue().floatValue();
-        JsonArray jsonImage = jsonProduct.getJsonArray("images");
-        JsonArray jsonRating = jsonProduct.getJsonArray("ratings");
-        JsonArray JsonPaymentMethods = jsonProduct.getJsonArray("paymentMethods");
-        int categoryId = jsonProduct.getInt("categoryId");
-        int userId = jsonProduct.getInt("userId");
-        String stateType = jsonProduct.getString("state");
-        JsonObject jsonLocation = jsonProduct.getJsonObject("location");
-        float generalRating = jsonProduct.getJsonNumber("generalRating").numberValue().floatValue();
-
-        StateType state = StateType.valueOf(stateType);
-
-        ImageList images = ImageList.jsonToList(jsonImage);
-        RatingList ratings = RatingList.jsonToList(jsonRating);
-        PaymentMethodList paymentMethods = PaymentMethodList.jsonToList(JsonPaymentMethods);
-
-        CategoriesList categories = CategoriesList.getInstance();
-        Category category = categories.findById(categoryId);
-
-        UserList users = UserList.getInstance();
-        User user = users.findById(userId);
-
-        Location location = Location.jsonToObject(jsonLocation);
-
-        Product product = new Product(id, name, description, price, images, ratings, paymentMethods, category, user, state, location, generalRating);
-        products.add(product);
-    }
-
     public Product findById(int id) {
         boolean found = false;
         Iterator<Product> iterator = this.products.iterator();
@@ -103,5 +71,37 @@ public class ProductList extends Loadable implements Searchable<Product>{
         }
 
         return filteredList;
+    }
+
+    protected void handleJson(JsonObject jsonProduct) {
+        String name = jsonProduct.getString("name");
+        String description = jsonProduct.getString("description");
+        float price = jsonProduct.getJsonNumber("price").numberValue().floatValue();
+        JsonArray jsonImage = jsonProduct.getJsonArray("images");
+        JsonArray jsonRating = jsonProduct.getJsonArray("ratings");
+        JsonArray JsonPaymentMethods = jsonProduct.getJsonArray("paymentMethods");
+        int categoryId = jsonProduct.getInt("categoryId");
+        int userId = jsonProduct.getInt("userId");
+        String stateType = jsonProduct.getString("state");
+        JsonObject jsonLocation = jsonProduct.getJsonObject("location");
+        float generalRating = jsonProduct.getJsonNumber("generalRating").numberValue().floatValue();
+        boolean donation = jsonProduct.getBoolean("donation");
+
+        StateType state = StateType.valueOf(stateType);
+
+        ImageList images = ImageList.jsonToList(jsonImage);
+        RatingList ratings = RatingList.jsonToList(jsonRating);
+        PaymentMethodList paymentMethods = PaymentMethodList.jsonToList(JsonPaymentMethods);
+
+        CategoriesList categories = CategoriesList.getInstance();
+        Category category = categories.findById(categoryId);
+
+        UserList users = UserList.getInstance();
+        User user = users.findById(userId);
+
+        Location location = Location.jsonToObject(jsonLocation);
+
+        Product product = new Product(name, description, price, images, ratings, paymentMethods, category, user, state, location, generalRating, donation);
+        products.add(product);
     }
 }

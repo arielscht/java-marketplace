@@ -2,6 +2,7 @@ package com.marketplace.models;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import javax.json.JsonObject;
 
@@ -27,19 +28,6 @@ public class UserList extends Loadable implements Searchable<User> {
         return this.users;
     }
 
-    protected void handleJson(JsonObject jsonUser) {
-        int id = jsonUser.getInt("id");
-        String firstName = jsonUser.getString("firstName");
-        String lastName = jsonUser.getString("lastName");
-        String email = jsonUser.getString("email");
-        String photo = jsonUser.getString("photo");
-        boolean admin = jsonUser.getBoolean("admin");
-
-        User user = new User(id, firstName, lastName, email, photo, admin);
-
-        this.users.add(user);
-    }
-
     public User findById(int id) {
         boolean found = false;
         Iterator<User> iterator = users.iterator();
@@ -55,5 +43,25 @@ public class UserList extends Loadable implements Searchable<User> {
         }
 
         return user;
+    }
+
+    public User getRandomUser(){
+        Random random = new Random();
+
+        int randomIndex = random.nextInt(this.users.size());
+
+        return this.users.get(randomIndex);
+    }
+
+    protected void handleJson(JsonObject jsonUser) {
+        String firstName = jsonUser.getString("firstName");
+        String lastName = jsonUser.getString("lastName");
+        String email = jsonUser.getString("email");
+        String photo = jsonUser.getString("photo");
+        boolean admin = jsonUser.getBoolean("admin");
+
+        User user = new User(firstName, lastName, email, photo, admin);
+
+        this.users.add(user);
     }
 }
