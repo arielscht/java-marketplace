@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import com.marketplace.controllers.ProductController;
 import com.marketplace.models.Product;
+import com.marketplace.utils.InputReader;
 import com.marketplace.models.CategoriesList;
 import com.marketplace.models.Category;
 
@@ -22,7 +23,7 @@ public class ProductFilter extends Interface {
     }
 
     public void showOptions() {
-        System.out.println("\nFiltros: ");
+        System.out.println("\nFILTROS: ");
         System.out.println("1 - Nome");
         System.out.println("2 - Categoria");
         System.out.println("3 - Preço");
@@ -56,20 +57,14 @@ public class ProductFilter extends Interface {
     }
 
     private void readName() {
-        String nameInput = "";
-
-        System.out.print("Nome: ");
-        if (this.keyboard.hasNext()) {
-            nameInput = this.keyboard.next();
-            this.keyboard.nextLine();
-        }
-
-        this.name = nameInput;
+        InputReader reader = new InputReader(this.keyboard);
+        this.name = reader.readString("Nome");
 
         this.showOptions();
     }
 
     private void readCategory() {
+        InputReader reader = new InputReader(this.keyboard);
         CategoriesList categoryList = CategoriesList.getInstance();
         ArrayList<Category> categories = categoryList.getCategories();
 
@@ -79,36 +74,23 @@ public class ProductFilter extends Interface {
             System.out.println(iterator.next().toString(1));
 
         Category categoryObj = null;
-
         while (categoryObj == null) {
-            System.out.print("\nEscolha a Categoria: ");
-            categoryObj = categoryList.findById(this.keyboard.nextInt());
+            categoryObj = categoryList.findById(reader.readInt("\nEscolha a Categoria"));
 
             if (categoryObj == null)
                 System.out.println("CATEGORIA INVÁLIDA. Escolha novamente.");
         }
-
         this.categoryId = categoryObj.getId();
 
         this.showOptions();
     }
 
     private void readPrice() {
-        float lowerBound = -1;
-        float upperBound = -1;
+        InputReader reader = new InputReader(this.keyboard);
 
         System.out.println("Faixa de preço: \n");
-
-        System.out.print("De: ");
-        if (this.keyboard.hasNextFloat())
-            lowerBound = this.keyboard.nextFloat();
-
-        System.out.print("Até: ");
-        if (this.keyboard.hasNextFloat())
-            upperBound = this.keyboard.nextFloat();
-
-        this.lowerBoundPrice = lowerBound;
-        this.upperBoundPrice = upperBound;
+        this.lowerBoundPrice = reader.readFloat("De");
+        this.upperBoundPrice = reader.readFloat("Até");
 
         this.showOptions();
     }

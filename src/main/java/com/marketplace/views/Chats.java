@@ -7,6 +7,7 @@ import com.marketplace.controllers.ChatController;
 import com.marketplace.models.Chat;
 import com.marketplace.models.User;
 import com.marketplace.models.UserList;
+import com.marketplace.utils.InputReader;
 
 public class Chats extends Interface {
     private ChatController chatController;
@@ -44,7 +45,7 @@ public class Chats extends Interface {
     private void listChats() {
         ArrayList<Chat> chatList = this.chatController.getChats();
 
-        System.out.println("CONVERSAS: ");
+        System.out.print("CONVERSAS: ");
         Iterator<Chat> iterator = chatList.iterator();
         while (iterator.hasNext())
             System.out.print(iterator.next().toString(1));
@@ -53,13 +54,13 @@ public class Chats extends Interface {
     }
 
     private void createChat() {
+        InputReader reader = new InputReader(this.keyboard);
         UserList userList = UserList.getInstance();
         User receiver = null;
         Chat chat = null;
 
         while (receiver == null || chat == null) {
-            System.out.print("\nID do usuário: ");
-            receiver = userList.findById(this.keyboard.nextInt());
+            receiver = userList.findById(reader.readInt("\nID do usuário"));
 
             if (receiver == null)
                 System.out.println("USUÁRIO INVÁLIDO. Escolha novamente.");
@@ -75,11 +76,12 @@ public class Chats extends Interface {
     }
 
     private void showChat() {
+        InputReader reader = new InputReader(this.keyboard);
         Chat chatObj = null;
 
         while (chatObj == null) {
-            System.out.print("\nID do chat: ");
-            chatObj = this.chatController.getChat(this.keyboard.nextInt());
+            chatObj = this.chatController.getChat(reader.readInt("\nID do chat"));
+
             if (chatObj == null)
                 System.out.println("CHAT INVÁLIDO. Escolha novamente.");
         }

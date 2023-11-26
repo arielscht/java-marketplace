@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.marketplace.controllers.ProductController;
 import com.marketplace.models.Product;
 import com.marketplace.models.ProductList;
+import com.marketplace.utils.InputReader;
 
 public class Explore extends Interface {
     private ProductController productController;
@@ -42,7 +43,7 @@ public class Explore extends Interface {
     private void listProducts() {
         ArrayList<Product> products = this.productController.search();
 
-        System.out.println("\nPRODUTOS:\n");
+        System.out.print("\nPRODUTOS:\n");
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
@@ -62,12 +63,12 @@ public class Explore extends Interface {
     }
 
     private void showProduct() {
+        InputReader reader = new InputReader(this.keyboard);
         ProductList productList = ProductList.getInstance();
         Product productObj = null;
 
         while (productObj == null) {
-            System.out.print("\nID do Produto: ");
-            productObj = productList.findById(this.keyboard.nextInt());
+            productObj = productList.findById(reader.readInt("\nID do Produto"));
 
             if (productObj == null)
                 System.out.println("PRODUTO INVÁLIDO. Escolha novamente.");

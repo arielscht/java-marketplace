@@ -76,7 +76,8 @@ public class Product {
                 "\nUsuario: " + this.user.toString(1) +
                 "\nEstado: " + Product.parseState(this.state) +
                 "\nLocalização: " + this.location.toString(1) +
-                "\nAvaliaçao geral: " + this.generalRating;
+                "\nAvaliaçao geral: " + this.generalRating +
+                "\nDoação: " + this.donation;
 
         System.out.println(result);
 
@@ -86,7 +87,7 @@ public class Product {
             System.out.println(paymentMethodsIterator.next().toString(1));
         }
 
-        System.out.println("\nAvaliações:");
+        System.out.println("Avaliações:");
         Iterator<Rating> ratingsIterator = this.ratings.iterator();
         while (ratingsIterator.hasNext()) {
             System.out.println(ratingsIterator.next().toString(1));

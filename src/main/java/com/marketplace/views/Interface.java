@@ -2,20 +2,11 @@ package com.marketplace.views;
 
 import java.util.Scanner;
 
+import com.marketplace.utils.InputReader;
+
 public abstract class Interface {
     protected int numberOfOptions;
     protected Scanner keyboard;
-
-    private int readCommand(Scanner keyboard) {
-        int option = -1;
-
-        System.out.print("Opção: ");
-
-        if (keyboard.hasNextInt())
-            option = keyboard.nextInt();
-
-        return option;
-    }
 
     private boolean checkOption(int option) {
         boolean isValid = option >= 1 && option <= this.numberOfOptions;
@@ -31,11 +22,12 @@ public abstract class Interface {
     }
 
     public void listenCommand() {
-        int option;
         boolean isValid;
+        int option = -1;
         this.keyboard = new Scanner(System.in);
+        InputReader reader = new InputReader(this.keyboard);
 
-        option = this.readCommand(this.keyboard);
+        option = reader.readInt("Opção");
 
         while (!this.isExit(option)) {
             isValid = this.checkOption(option);
@@ -43,7 +35,7 @@ public abstract class Interface {
             if (isValid)
                 this.handleOption(option);
 
-            option = this.readCommand(this.keyboard);
+            option = reader.readInt("Opção");
         }
     }
 

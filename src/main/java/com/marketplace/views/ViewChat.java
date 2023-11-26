@@ -1,7 +1,6 @@
 package com.marketplace.views;
 
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -61,7 +60,6 @@ public class ViewChat extends Interface {
         String message = "";
 
         message = reader.readString("Mensagem");
-
         result = this.chatController.sendMessage(message, this.chat);
 
         Chat temp = (Chat) result.get("chat");
@@ -70,6 +68,7 @@ public class ViewChat extends Interface {
             for (Map.Entry<String, Object> entry : result.entrySet())
                 System.out.println(entry.getValue());
         }
+
         this.showOptions();
     }
 }
