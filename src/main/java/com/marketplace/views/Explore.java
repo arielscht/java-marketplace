@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import com.marketplace.controllers.ProductController;
 import com.marketplace.models.Product;
+import com.marketplace.models.ProductList;
 
 public class Explore extends Interface {
     private ProductController productController;
@@ -61,6 +62,22 @@ public class Explore extends Interface {
     }
 
     private void showProduct() {
+        ProductList productList = ProductList.getInstance();
+        Product productObj = null;
 
+        while (productObj == null) {
+            System.out.print("\nID do Produto: ");
+            productObj = productList.findById(this.keyboard.nextInt());
+
+            if (productObj == null)
+                System.out.println("PRODUTO INVÁLIDO. Escolha novamente.");
+        }
+
+        ViewProduct viewProductScreen = new ViewProduct(productObj);
+
+        viewProductScreen.showOptions();
+        viewProductScreen.listenCommand();
+
+        this.showOptions();
     }
 }

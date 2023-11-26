@@ -8,7 +8,7 @@ public class User {
     private String photo;
     private boolean admin;
 
-    public User(int id, String firstName, String lastName, String email, String photo, boolean admin){
+    public User(int id, String firstName, String lastName, String email, String photo, boolean admin) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -19,6 +19,10 @@ public class User {
 
     public int getId() {
         return this.id;
+    }
+
+    public String getName() {
+        return this.firstName + " " + this.lastName;
     }
 
     public String toString(int level) {
