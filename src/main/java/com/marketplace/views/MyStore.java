@@ -1,5 +1,12 @@
 package com.marketplace.views;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import com.marketplace.models.Session;
+import com.marketplace.models.User;
+import com.marketplace.models.Product;
+
 public class MyStore extends Interface {
     public MyStore() {
         this.numberOfOptions = 3;
@@ -26,7 +33,18 @@ public class MyStore extends Interface {
     }
 
     private void showProducts() {
+        Session session = Session.getInstance();
+        User user = session.getCurrentUser();
+        ArrayList<Product> products = user.getProducts();
 
+        System.out.print("\nPRODUTOS:\n");
+        Iterator<Product> iterator = products.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+            System.out.print("\n");
+        }
+
+        this.showOptions();
     }
 
     private void addProduct() {

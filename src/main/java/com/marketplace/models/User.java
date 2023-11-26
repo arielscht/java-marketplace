@@ -1,5 +1,7 @@
 package com.marketplace.models;
 
+import java.util.ArrayList;
+
 import com.marketplace.enums.ReasonType;
 
 public class User {
@@ -31,6 +33,18 @@ public class User {
 
     public String getName() {
         return this.firstName + " " + this.lastName;
+    }
+
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<Product>();
+        ProductList list = ProductList.getInstance();
+
+        for (Product product : list.getProducts()) {
+            if (product.getSeller().getId() == this.id)
+                products.add(product);
+        }
+
+        return products;
     }
 
     public ChatList getChats() {
