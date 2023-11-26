@@ -10,4 +10,16 @@ public class Message {
         this.receiver = receiver;
         this.message = message;
     }
+
+    public String getMessage(){
+        return this.message;
+    }
+
+    public User getSender(){
+        return this.sender;
+    }
+
+    public User getReceiver(){
+        return this.receiver;
+    }
 }

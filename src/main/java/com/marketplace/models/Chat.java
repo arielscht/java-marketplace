@@ -7,7 +7,7 @@ public class Chat {
     private static int nextId = 1;
 
     private int id;
-    private ArrayList<User> users;
+    private ArrayList<User> users = new ArrayList<>();
     private MessageList messages;
 
     public Chat(User userOne, User userTwo, MessageList messages){
@@ -23,6 +23,22 @@ public class Chat {
 
     public ArrayList<User> getUsers(){
         return this.users;
+    }
+
+    public MessageList getMessages(){
+        return this.messages;
+    }
+
+    public boolean userParticipateChat(User user){
+        boolean participate = false;
+
+        Iterator<User> iterator = this.users.iterator();
+
+        while (!participate && iterator.hasNext())
+            if(user.getId() == iterator.next().getId())
+                participate = true;
+
+        return participate;
     }
 
     public void sendMessage(String message){
@@ -43,8 +59,7 @@ public class Chat {
         boolean found = false;
         User receiver = null;
 
-        ArrayList<User> users = this.getUsers();
-        Iterator<User> iterator = users.iterator();
+        Iterator<User> iterator = this.users.iterator();
 
         while (!found && iterator.hasNext()) {
             User user = iterator.next();
