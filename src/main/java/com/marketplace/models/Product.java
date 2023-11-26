@@ -55,16 +55,12 @@ public class Product {
         return this.category;
     }
 
-    @Override
-    public String toString() {
-        String result = "id: " + this.id +
-                "\nNome: " + this.name +
-                "\nPreço: " + this.price +
-                "\nCategoria: " + this.category.toString(1) +
-                "\nAvaliação Geral: " + this.generalRating +
-                "\nFoto: " + this.images.get(0);
+    public void addRating(User user, float rating, String comment) {
+        Rating ratingObj = new Rating(user, rating, comment);
+        this.ratings.add(ratingObj);
 
-        return result;
+        this.generalRating += rating;
+        this.generalRating = (this.ratings.size() > 0) ? (this.generalRating / 2) : this.generalRating;
     }
 
     public void showDetails() {
@@ -103,5 +99,17 @@ public class Product {
             default:
                 return "";
         }
+    }
+
+    @Override
+    public String toString() {
+        String result = "id: " + this.id +
+                "\nNome: " + this.name +
+                "\nPreço: " + this.price +
+                "\nCategoria: " + this.category.toString(1) +
+                "\nAvaliação Geral: " + this.generalRating +
+                "\nFoto: " + this.images.get(0);
+
+        return result;
     }
 }

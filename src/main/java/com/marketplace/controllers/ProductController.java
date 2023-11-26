@@ -116,6 +116,29 @@ public class ProductController {
         return;
     }
 
+    public HashMap<String, Object> rate(float rating, String comment, Product product) {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+
+        if (comment.trim().length() > 320) {
+            String errorMessage = "Tamanho máximo permitido é igual a 2000 caracteres";
+            result.put("message", errorMessage);
+        }
+        if (comment.trim().length() == 0) {
+            String errorMessage = "Mensagem não pode estar em branco!";
+            result.put("message", errorMessage);
+        }
+
+        if (result.size() > 0)
+            return result;
+
+        Session session = Session.getInstance();
+        User currentUser = session.getCurrentUser();
+
+        product.addRating(currentUser, rating, comment);
+        result.put("product", product);
+        return result;
+    }
+
     private HashMap<String, Object> validateLocation(HashMap<String, Object> location) {
         HashMap<String, Object> result = new HashMap<>();
 
