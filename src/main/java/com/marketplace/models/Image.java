@@ -14,4 +14,9 @@ public class Image {
     public String getUrl() {
         return this.url;
     }
+
+    @Override
+    public String toString() {
+        return this.url;
+    }
 }

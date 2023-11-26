@@ -31,6 +31,11 @@ public class MyStore extends Interface {
     }
 
     private void addProduct() {
+        CreateProduct createProductScreen = new CreateProduct();
 
+        createProductScreen.showOptions();
+        createProductScreen.listenCommand();
+
+        this.showOptions();
     }
 }

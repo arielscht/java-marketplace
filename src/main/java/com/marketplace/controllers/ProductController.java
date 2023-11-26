@@ -2,7 +2,6 @@ package com.marketplace.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import com.marketplace.models.ProductList;
@@ -20,7 +19,6 @@ import com.marketplace.models.RatingList;
 import com.marketplace.models.Session;
 import com.marketplace.models.User;
 
-
 public class ProductController {
     public ArrayList<Product> search() {
         ProductList list = ProductList.getInstance();
@@ -31,10 +29,14 @@ public class ProductController {
         ProductList list = ProductList.getInstance();
         HashMap<String, Object> filters = new HashMap<String, Object>();
 
-        if (name.length() != 0) filters.put("name", name);
-        if (categoryId != -1) filters.put("categoryId", categoryId);
-        if (lowerPriceBound != -1) filters.put("lowerPriceBound", lowerPriceBound);
-        if (upperPriceBound != -1) filters.put("upperPriceBound", upperPriceBound);
+        if (name.length() != 0)
+            filters.put("name", name);
+        if (categoryId != -1)
+            filters.put("categoryId", categoryId);
+        if (lowerPriceBound != -1)
+            filters.put("lowerPriceBound", lowerPriceBound);
+        if (upperPriceBound != -1)
+            filters.put("upperPriceBound", upperPriceBound);
 
         return list.filter(filters);
     }
@@ -44,15 +46,9 @@ public class ProductController {
         return productList.findById(id);
     }
 
-    public void confirm(Product product){
-        ProductList productList = ProductList.getInstance();
-
-        productList.addProduct(product);
-    }
-
-    public void cancel(){ return; }
-
-    public HashMap<String, Object> registerProduct(String name, String description, float price, int categoryId, StateType state, HashMap<String, Object> location, ArrayList<PaymentMethodType> payments, boolean donation, ArrayList<String> photos) {
+    public HashMap<String, Object> registerProduct(String name, String description, float price, int categoryId,
+            StateType state, HashMap<String, Object> location, ArrayList<PaymentMethodType> payments, boolean donation,
+            ArrayList<String> photos) {
         HashMap<String, Object> result = new HashMap<>();
 
         if (name.isBlank()) {
@@ -91,7 +87,8 @@ public class ProductController {
             result.put("photos", errorMessage);
         }
 
-        if (result.size() > 0) return result;
+        if (result.size() > 0)
+            return result;
 
         Session session = Session.getInstance();
         User currentUser = session.getCurrentUser();
@@ -104,9 +101,19 @@ public class ProductController {
         for (PaymentMethodType type : payments)
             paymentMethods.add(new PaymentMethod(type));
 
-        Product product = new Product(name, description, price, imageList, new RatingList(), paymentMethods, category, currentUser, state, locationObj, 0, donation);
+        Product product = new Product(name, description, price, imageList, new RatingList(), paymentMethods, category,
+                currentUser, state, locationObj, 0, donation);
         result.put("product", product);
         return result;
+    }
+
+    public void confirm(Product product) {
+        ProductList productList = ProductList.getInstance();
+        productList.addProduct(product);
+    }
+
+    public void cancel() {
+        return;
     }
 
     private HashMap<String, Object> validateLocation(HashMap<String, Object> location) {
@@ -122,11 +129,12 @@ public class ProductController {
                     result.put(entry.getKey(), "Valor precisa ser informado");
             }
         }
-        if (result.size() > 0) return result;
+        if (result.size() > 0)
+            return result;
 
-        Location locationObj = new Location((String) location.get("street"), (String)location.get("neighborhood"), (int) location.get("number"), (String) location.get("city"), (String) location.get("state"));
+        Location locationObj = new Location((String) location.get("street"), (String) location.get("neighborhood"),
+                (int) location.get("number"), (String) location.get("city"), (String) location.get("state"));
         result.put("location", locationObj);
         return result;
     }
-
 }

@@ -50,4 +50,22 @@ public class CategoriesList extends Loadable implements Searchable<Category> {
 
         categories.add(category);
     }
+
+    @Override
+    public String toString() {
+        return this.toString(0);
+    }
+
+    public String toString(int level) {
+        String result = "";
+
+        CategoriesList categoryList = CategoriesList.getInstance();
+        ArrayList<Category> categories = categoryList.getCategories();
+
+        Iterator<Category> iterator = categories.iterator();
+        while (iterator.hasNext())
+            result += "\n" + iterator.next().toString(level);
+
+        return result;
+    }
 }
