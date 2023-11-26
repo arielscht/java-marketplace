@@ -47,7 +47,7 @@ public class ViewChat extends Interface {
         System.out.println("CONVERSA: ");
         Iterator<Message> iterator = messages.iterator();
         while (iterator.hasNext())
-            System.out.print(iterator.next().toString(1));
+            System.out.println(iterator.next().toString(1));
 
         this.showOptions();
     }
