@@ -60,7 +60,7 @@ public class UserList extends Loadable implements Searchable<User> {
         String photo = jsonUser.getString("photo");
         boolean admin = jsonUser.getBoolean("admin");
 
-        User user = new User(firstName, lastName, email, photo, admin);
+        User user = new User(firstName, lastName, email, photo, admin, new ChatList());
 
         this.users.add(user);
     }

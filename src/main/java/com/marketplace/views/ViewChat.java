@@ -1,7 +1,7 @@
 package com.marketplace.views;
 
-public class Chat extends Interface {
-    public Chat() {
+public class ViewChat extends Interface {
+    public ViewChat() {
         this.numberOfOptions = 3;
     }
 

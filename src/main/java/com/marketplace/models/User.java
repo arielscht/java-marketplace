@@ -9,14 +9,16 @@ public class User {
     private String email;
     private String photo;
     private boolean admin;
+    private ChatList chats;
 
-    public User(String firstName, String lastName, String email, String photo, boolean admin) {
+    public User(String firstName, String lastName, String email, String photo, boolean admin, ChatList chats) {
         this.id = User.nextId++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.photo = photo;
         this.admin = admin;
+        this.chats = chats;
     }
 
     public int getId() {
@@ -25,6 +27,14 @@ public class User {
 
     public String getName() {
         return this.firstName + " " + this.lastName;
+    }
+
+    public ChatList getChats(){
+        return this.chats;
+    }
+
+    public void addChat(Chat chat){
+        this.chats.add(chat);
     }
 
     public String toString(int level) {
