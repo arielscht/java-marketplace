@@ -26,8 +26,6 @@ public class ViewChat extends Interface {
         System.out.println("1 - Ver Mensagens");
         System.out.println("2 - Enviar Mensagem");
         System.out.println("3 - Voltar\n");
-
-        this.listenCommand();
     }
 
     public void handleOption(int option) {

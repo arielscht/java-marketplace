@@ -10,10 +10,11 @@ public class InputReader {
     }
 
     public String readString(String label) {
-        String input;
+        String input = "";
+
         System.out.print(label + ": ");
-        input = scanner.next();
-        scanner.nextLine();
+        input += scanner.nextLine();
+        // scanner.nextLine();
         return input;
     }
 

@@ -48,7 +48,7 @@ public class Chats extends Interface {
         System.out.print("CONVERSAS: ");
         Iterator<Chat> iterator = chatList.iterator();
         while (iterator.hasNext())
-            System.out.print(iterator.next().toString(1));
+            System.out.println(iterator.next().toString(1));
 
         this.showOptions();
     }
