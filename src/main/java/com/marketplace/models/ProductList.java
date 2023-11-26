@@ -73,6 +73,10 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return filteredList;
     }
 
+    public void addProduct(Product product){
+        this.products.add(product);
+    }
+
     protected void handleJson(JsonObject jsonProduct) {
         String name = jsonProduct.getString("name");
         String description = jsonProduct.getString("description");

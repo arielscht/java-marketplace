@@ -44,6 +44,14 @@ public class ProductController {
         return productList.findById(id);
     }
 
+    public void confirm(Product product){
+        ProductList productList = ProductList.getInstance();
+
+        productList.addProduct(product);
+    }
+
+    public void cancel(){ return; }
+
     public HashMap<String, Object> registerProduct(String name, String description, float price, int categoryId, StateType state, HashMap<String, Object> location, ArrayList<PaymentMethodType> payments, boolean donation, ArrayList<String> photos) {
         HashMap<String, Object> result = new HashMap<>();
 
