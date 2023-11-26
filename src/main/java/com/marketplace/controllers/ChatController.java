@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.marketplace.models.Chat;
-import com.marketplace.models.MessageList;
 import com.marketplace.models.Session;
 import com.marketplace.models.User;
 import com.marketplace.models.UserList;
@@ -19,7 +18,7 @@ public class ChatController {
 
         Chat chat = null;
         if (currentUser.getId() != userId) {
-            chat = new Chat(user, currentUser, new MessageList());
+            chat = new Chat(user, currentUser);
             user.addChat(chat);
             currentUser.addChat(chat);
         }

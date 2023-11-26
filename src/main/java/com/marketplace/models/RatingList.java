@@ -10,7 +10,7 @@ public class RatingList extends ArrayList<Rating> {
         RatingList ratingList = new RatingList();
         UserList userList = UserList.getInstance();
 
-        for (JsonObject jsonRating : jsonArray.getValuesAs(JsonObject.class)){
+        for (JsonObject jsonRating : jsonArray.getValuesAs(JsonObject.class)) {
             int userId = jsonRating.getInt("userId");
             float ratingValue = jsonRating.getJsonNumber("rating").numberValue().floatValue();
             String comment = jsonRating.getString("comment");

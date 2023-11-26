@@ -10,11 +10,11 @@ public class Chat {
     private ArrayList<User> users = new ArrayList<>();
     private MessageList messages;
 
-    public Chat(User userOne, User userTwo, MessageList messages) {
+    public Chat(User userOne, User userTwo) {
         this.id = nextId++;
         this.users.add(userOne);
         this.users.add(userTwo);
-        this.messages = messages;
+        this.messages = new MessageList();
     }
 
     public int getId() {

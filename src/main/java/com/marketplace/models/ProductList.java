@@ -10,7 +10,7 @@ import javax.json.JsonObject;
 import com.marketplace.enums.StateType;
 import com.marketplace.interfaces.Searchable;
 
-public class ProductList extends Loadable implements Searchable<Product>{
+public class ProductList extends Loadable implements Searchable<Product> {
     private static ProductList instance;
     private ArrayList<Product> products;
 
@@ -26,7 +26,9 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return instance;
     }
 
-    public ArrayList<Product> getProducts() { return this.products; }
+    public ArrayList<Product> getProducts() {
+        return this.products;
+    }
 
     public Product findById(int id) {
         boolean found = false;
@@ -36,7 +38,7 @@ public class ProductList extends Loadable implements Searchable<Product>{
         while (!found && iterator.hasNext()) {
             Product currentProduct = iterator.next();
 
-            if (currentProduct.getId() == id){
+            if (currentProduct.getId() == id) {
                 product = currentProduct;
                 found = true;
             }
@@ -73,7 +75,7 @@ public class ProductList extends Loadable implements Searchable<Product>{
         return filteredList;
     }
 
-    public void addProduct(Product product){
+    public void addProduct(Product product) {
         this.products.add(product);
     }
 
@@ -105,7 +107,8 @@ public class ProductList extends Loadable implements Searchable<Product>{
 
         Location location = Location.jsonToObject(jsonLocation);
 
-        Product product = new Product(name, description, price, images, ratings, paymentMethods, category, user, state, location, generalRating, donation);
+        Product product = new Product(name, description, price, images, ratings, paymentMethods, category, user, state,
+                location, generalRating, donation);
         products.add(product);
     }
 }

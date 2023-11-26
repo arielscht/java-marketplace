@@ -55,6 +55,10 @@ public class Product {
         return this.category;
     }
 
+    public User getSeller() {
+        return this.user;
+    }
+
     public void addRating(User user, float rating, String comment) {
         Rating ratingObj = new Rating(user, rating, comment);
         this.ratings.add(ratingObj);

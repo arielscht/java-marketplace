@@ -4,17 +4,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.marketplace.controllers.ProductController;
+import com.marketplace.controllers.UserController;
 import com.marketplace.models.Product;
+import com.marketplace.enums.ReasonType;
 import com.marketplace.utils.InputReader;
 
 public class ViewProduct extends Interface {
     private ProductController productController;
+    private UserController userController;
     private Product product;
 
     public ViewProduct(Product product) {
         this.numberOfOptions = 3;
 
         this.productController = new ProductController();
+        this.userController = new UserController();
         this.product = product;
 
         this.showProduct();
@@ -23,7 +27,7 @@ public class ViewProduct extends Interface {
     public void showOptions() {
         System.out.println("\nProduto");
         System.out.println("1 - Avaliar Produto");
-        System.out.println("2 - Denunciar Produto");
+        System.out.println("2 - Denunciar Vendedor do Produto");
         System.out.println("3 - Voltar\n");
     }
 
@@ -33,7 +37,7 @@ public class ViewProduct extends Interface {
                 this.rateProduct();
                 break;
             case 2:
-                this.reportProduct();
+                this.reportSeller();
                 break;
             default:
                 break;
@@ -64,8 +68,18 @@ public class ViewProduct extends Interface {
         this.showOptions();
     }
 
-    private void reportProduct() {
+    private void reportSeller() {
+        InputReader reader = new InputReader(this.keyboard);
+        ReasonType reason;
+        String description;
 
+        reason = reader.readEnum(ReasonType.class, "Razão");
+        description = reader.readString("Descrição");
+
+        this.userController.report(this.product.getSeller(), reason, description);
+        System.out.println("\nVendedor denunciado com sucesso!");
+
+        this.showOptions();
     }
 
     private void showProduct() {

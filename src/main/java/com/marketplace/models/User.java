@@ -1,5 +1,7 @@
 package com.marketplace.models;
 
+import com.marketplace.enums.ReasonType;
+
 public class User {
     private static int nextId = 1;
 
@@ -10,15 +12,17 @@ public class User {
     private String photo;
     private boolean admin;
     private ChatList chats;
+    private ReportList reports;
 
-    public User(String firstName, String lastName, String email, String photo, boolean admin, ChatList chats) {
+    public User(String firstName, String lastName, String email, String photo, boolean admin) {
         this.id = User.nextId++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.photo = photo;
         this.admin = admin;
-        this.chats = chats;
+        this.chats = new ChatList();
+        this.reports = new ReportList();
     }
 
     public int getId() {
@@ -29,12 +33,17 @@ public class User {
         return this.firstName + " " + this.lastName;
     }
 
-    public ChatList getChats(){
+    public ChatList getChats() {
         return this.chats;
     }
 
-    public void addChat(Chat chat){
+    public void addChat(Chat chat) {
         this.chats.add(chat);
+    }
+
+    public void addReport(ReasonType reason, String description) {
+        Report report = new Report(reason, description);
+        this.reports.add(report);
     }
 
     public String toString(int level) {

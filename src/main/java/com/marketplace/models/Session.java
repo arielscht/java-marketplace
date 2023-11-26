@@ -15,7 +15,7 @@ public class Session {
         return instance;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         return this.currentUser;
     }
 }

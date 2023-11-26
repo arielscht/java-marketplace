@@ -45,7 +45,7 @@ public class UserList extends Loadable implements Searchable<User> {
         return user;
     }
 
-    public User getRandomUser(){
+    public User getRandomUser() {
         Random random = new Random();
 
         int randomIndex = random.nextInt(this.users.size());
@@ -60,7 +60,7 @@ public class UserList extends Loadable implements Searchable<User> {
         String photo = jsonUser.getString("photo");
         boolean admin = jsonUser.getBoolean("admin");
 
-        User user = new User(firstName, lastName, email, photo, admin, new ChatList());
+        User user = new User(firstName, lastName, email, photo, admin);
 
         this.users.add(user);
     }
