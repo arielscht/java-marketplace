@@ -10,38 +10,38 @@ public class Chat {
     private ArrayList<User> users = new ArrayList<>();
     private MessageList messages;
 
-    public Chat(User userOne, User userTwo, MessageList messages){
+    public Chat(User userOne, User userTwo, MessageList messages) {
         this.id = nextId++;
         this.users.add(userOne);
         this.users.add(userTwo);
         this.messages = messages;
     }
 
-    public int getId(){
+    public int getId() {
         return this.id;
     }
 
-    public ArrayList<User> getUsers(){
+    public ArrayList<User> getUsers() {
         return this.users;
     }
 
-    public MessageList getMessages(){
+    public MessageList getMessages() {
         return this.messages;
     }
 
-    public boolean userParticipateChat(User user){
+    public boolean userParticipateChat(User user) {
         boolean participate = false;
 
         Iterator<User> iterator = this.users.iterator();
 
         while (!participate && iterator.hasNext())
-            if(user.getId() == iterator.next().getId())
+            if (user.getId() == iterator.next().getId())
                 participate = true;
 
         return participate;
     }
 
-    public void sendMessage(String message){
+    public void sendMessage(String message) {
         Session session = Session.getInstance();
 
         User sender = session.getCurrentUser();
@@ -52,7 +52,7 @@ public class Chat {
         this.messages.add(messageObj);
     }
 
-    private User fetchReceiver(){
+    private User fetchReceiver() {
         Session session = Session.getInstance();
         User sender = session.getCurrentUser();
 
@@ -64,12 +64,29 @@ public class Chat {
         while (!found && iterator.hasNext()) {
             User user = iterator.next();
 
-            if (user.getId() != sender.getId()){
+            if (user.getId() != sender.getId()) {
                 receiver = user;
                 found = true;
             }
         }
 
         return receiver;
+    }
+
+    @Override
+    public String toString() {
+        return this.toString(0);
+    }
+
+    public String toString(int level) {
+        String tabbing = "\n";
+
+        for (int i = 0; i < level; ++i)
+            tabbing += "\t";
+
+        String result = tabbing + "Conversa com: " + this.fetchReceiver().getName()
+                + " (Id: " + this.id + ")";
+
+        return result;
     }
 }

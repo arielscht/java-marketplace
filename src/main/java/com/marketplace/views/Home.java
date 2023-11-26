@@ -1,7 +1,6 @@
 package com.marketplace.views;
 
 public class Home extends Interface {
-
     public Home() {
         this.numberOfOptions = 4;
     }

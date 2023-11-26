@@ -8,7 +8,6 @@ import javax.json.JsonObject;
 import javax.json.JsonReader;
 
 public abstract class Loadable {
-
     protected void loadData(String path) {
         try (JsonReader reader = Json.createReader(new FileReader(path))) {
             JsonArray jsonArray = reader.readArray();

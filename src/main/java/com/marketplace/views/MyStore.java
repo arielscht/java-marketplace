@@ -1,7 +1,6 @@
 package com.marketplace.views;
 
 public class MyStore extends Interface {
-
     public MyStore() {
         this.numberOfOptions = 3;
     }
