@@ -61,10 +61,14 @@ public class Product {
 
     public void addRating(User user, float rating, String comment) {
         Rating ratingObj = new Rating(user, rating, comment);
+        float totalRating = this.generalRating * this.ratings.size();
+        float newRating;
+
         this.ratings.add(ratingObj);
 
-        this.generalRating += rating;
-        this.generalRating = (this.ratings.size() > 0) ? (this.generalRating / 2) : this.generalRating;
+        newRating = (totalRating + rating) / this.ratings.size();
+
+        this.generalRating = newRating;
     }
 
     public void showDetails() {
