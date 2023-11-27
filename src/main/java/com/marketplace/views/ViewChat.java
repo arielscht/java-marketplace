@@ -44,10 +44,14 @@ public class ViewChat extends Interface {
     private void showMessages() {
         MessageList messages = this.chat.getMessages();
 
-        System.out.println("CONVERSA: ");
+        System.out.println("\nMENSAGENS:\n");
         Iterator<Message> iterator = messages.iterator();
         while (iterator.hasNext())
             System.out.println(iterator.next().toString(1));
+
+        if (messages.size() == 0) {
+            System.out.println("Vocês ainda não possuem mensagens.");
+        }
 
         this.showOptions();
     }
@@ -57,6 +61,7 @@ public class ViewChat extends Interface {
         HashMap<String, Object> result;
         String message = "";
 
+        System.out.print("\n");
         message = reader.readString("Mensagem");
         result = this.chatController.sendMessage(message, this.chat);
 

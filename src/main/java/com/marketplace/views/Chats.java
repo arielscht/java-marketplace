@@ -45,10 +45,14 @@ public class Chats extends Interface {
     private void listChats() {
         ArrayList<Chat> chatList = this.chatController.getChats();
 
-        System.out.print("CONVERSAS: ");
+        System.out.println("\nCONVERSAS:\n");
         Iterator<Chat> iterator = chatList.iterator();
         while (iterator.hasNext())
             System.out.println(iterator.next().toString(1));
+
+        if (chatList.size() == 0) {
+            System.out.println("Você não possui nenhuma conversa.");
+        }
 
         this.showOptions();
     }

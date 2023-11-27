@@ -35,7 +35,7 @@ public class Message {
             tabbing += "\t";
 
         String result = "De: " + this.sender.getName()
-                + " Para:" + this.receiver.getName() +
+                + " Para: " + this.receiver.getName() +
                 tabbing + this.message + "\n";
 
         return result;
