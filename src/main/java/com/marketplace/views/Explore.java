@@ -43,11 +43,15 @@ public class Explore extends Interface {
     private void listProducts() {
         ArrayList<Product> products = this.productController.search();
 
-        System.out.print("\nPRODUTOS:\n");
+        System.out.println("\nPRODUTOS:\n");
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
             System.out.print("\n");
+        }
+
+        if (products.size() == 0) {
+            System.out.println("Nenhum produto encontrado.");
         }
 
         this.showOptions();

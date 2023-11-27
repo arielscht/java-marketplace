@@ -14,7 +14,6 @@ public class InputReader {
 
         System.out.print(label + ": ");
         input += scanner.nextLine();
-        // scanner.nextLine();
         return input;
     }
 
@@ -22,6 +21,7 @@ public class InputReader {
         System.out.print(label + ": ");
         while (!scanner.hasNextInt()) {
             System.out.println("Valor inválido. Por favor, insira um valor válido.");
+            System.out.print(label + ": ");
             scanner.next();
         }
         int value = scanner.nextInt();
@@ -33,6 +33,7 @@ public class InputReader {
         System.out.print(label + ": ");
         while (!scanner.hasNextFloat()) {
             System.out.println("Valor inválido. Por favor, insira um valor válido.");
+            System.out.print(label + ": ");
             scanner.next();
         }
         float value = scanner.nextFloat();
@@ -50,6 +51,7 @@ public class InputReader {
 
             if (!input.equals("S") && !input.equals("N")) {
                 System.out.println("Valor inválido. Por favor, insira um valor válido.");
+                System.out.print(label + " (S/N): ");
             } else {
                 isValid = true;
             }

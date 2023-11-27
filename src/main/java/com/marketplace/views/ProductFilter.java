@@ -113,6 +113,10 @@ public class ProductFilter extends Interface {
             System.out.print("\n");
         }
 
+        if (products.size() == 0) {
+            System.out.println("Nenhum produto encontrado com esses filtros.");
+        }
+
         this.showOptions();
     }
 }

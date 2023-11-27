@@ -83,7 +83,7 @@ public class ProductController {
         }
 
         if (photos.size() == 0) {
-            String errorMessage = "Ao menos UMA foto precisa ser fornecida!";
+            String errorMessage = "Ao menos uma foto precisa ser fornecida!";
             result.put("photos", errorMessage);
         }
 

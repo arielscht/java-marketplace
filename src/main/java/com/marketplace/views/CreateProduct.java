@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.marketplace.controllers.ProductController;
 import com.marketplace.models.CategoriesList;
+import com.marketplace.models.Category;
 import com.marketplace.models.Product;
 import com.marketplace.enums.PaymentMethodType;
 import com.marketplace.enums.StateType;
@@ -58,7 +59,7 @@ public class CreateProduct extends Interface {
         InputReader reader = new InputReader(this.keyboard);
         CategoriesList categoriesList = CategoriesList.getInstance();
 
-        System.out.println("CADASTRAR PRODUTO \n");
+        System.out.println("\nCADASTRAR PRODUTO");
 
         this.name = reader.readString("Nome");
         this.description = reader.readString("Descrição");
@@ -67,7 +68,15 @@ public class CreateProduct extends Interface {
 
         System.out.print("Escolha umas das categorias:");
         System.out.println(categoriesList.toString(1));
-        this.categoryId = reader.readInt("\nCategoria");
+
+        Category categoryObj = null;
+        while (categoryObj == null) {
+            categoryObj = categoriesList.findById(reader.readInt("\nEscolha a Categoria"));
+
+            if (categoryObj == null)
+                System.out.println("CATEGORIA INVÁLIDA. Escolha novamente.");
+        }
+        this.categoryId = categoryObj.getId();
 
         this.state = reader.readEnum(StateType.class, "Estado");
 
@@ -107,8 +116,8 @@ public class CreateProduct extends Interface {
         InputReader reader = new InputReader(this.keyboard);
 
         product.showDetails();
-        System.out.println("\n1 - Confirmar");
-        System.out.println("2 - Cancelar\n");
+
+        System.err.println("\n");
         return reader.readBoolean("Confirmar");
     }
 }

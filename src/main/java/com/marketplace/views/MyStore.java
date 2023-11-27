@@ -37,11 +37,15 @@ public class MyStore extends Interface {
         User user = session.getCurrentUser();
         ArrayList<Product> products = user.getProducts();
 
-        System.out.print("\nPRODUTOS:\n");
+        System.out.println("\nPRODUTOS:\n");
         Iterator<Product> iterator = products.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
             System.out.print("\n");
+        }
+
+        if (products.size() == 0) {
+            System.out.println("Você não possui nenhum produto.");
         }
 
         this.showOptions();

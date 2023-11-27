@@ -50,6 +50,7 @@ public class ViewProduct extends Interface {
         String comment;
         float rating = -1.0f;
 
+        System.out.print("\n");
         while ((Float.compare(rating, 0f) < 0) || (Float.compare(rating, 5f) > 0))
             rating = reader.readFloat("Avaliação");
 
@@ -73,6 +74,7 @@ public class ViewProduct extends Interface {
         ReasonType reason;
         String description;
 
+        System.out.print("\n");
         reason = reader.readEnum(ReasonType.class, "Razão");
         description = reader.readString("Descrição");
 
